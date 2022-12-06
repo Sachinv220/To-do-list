@@ -7,6 +7,7 @@ import Customise from "./pages/Customise";
 import { Route, Routes } from "react-router-dom";
 import AlertBar from "./components/AlertBar";
 import { onSubmit, verifyText, binarySearch } from "./Function";
+import Http404 from "./pages/Http404";
 
 function App() {
   const [todo, setTodo] = useState([]);
@@ -86,6 +87,7 @@ function App() {
           path="/customise"
           element={<Customise deleteEverything={clearAllTasks} />}
         />
+        <Route path="*" element={<Http404 />} />
       </Routes>
     </React.Fragment>
   );
