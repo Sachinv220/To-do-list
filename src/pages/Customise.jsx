@@ -1,9 +1,15 @@
 import { Container, Text, Button } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import PopoverBar from "../components/PopoverBar";
+import { useNavigate } from "react-router-dom";
 
 const Customise = ({ deleteEverything }) => {
   const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
+  let navigate = useNavigate();
+  const beforeDelete = () => {
+    deleteEverything();
+    navigate("/to-do-list");
+  };
 
   return (
     <Container ml={isSmallerThan700 ? "1rem" : "14rem"} pt="3rem">
@@ -11,10 +17,13 @@ const Customise = ({ deleteEverything }) => {
         Do you want to delete all tasks you won't be able to undo this task
       </Text>
       <PopoverBar
-        button={<Button colorScheme="red" variant="outline">Delete</Button>}
+        button={
+          <Button colorScheme="red" variant="outline">
+            Delete
+          </Button>
+        }
         header="you won't be able to undo this action"
-        body="Confirm"
-        action={deleteEverything}
+        body={<Button onClick={beforeDelete}>confirm</Button>}
       />
     </Container>
   );

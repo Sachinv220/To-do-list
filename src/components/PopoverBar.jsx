@@ -4,26 +4,20 @@ import {
   PopoverCloseButton,
   PopoverContent,
   PopoverTrigger,
-  Text,
   PopoverHeader,
   PopoverBody,
-  Button,
 } from "@chakra-ui/react";
 
-const PopoverBar = ({ action, button, header, body }) => {
+const PopoverBar = ({ button, header, body }) => {
   return (
     <Popover>
       <PopoverTrigger>{button}</PopoverTrigger>
       <PopoverContent>
         <PopoverCloseButton />
         <PopoverHeader>
-          <Text fontSize="xl" fontWeight="extrabold">
-            {header}
-          </Text>
+          {header}
         </PopoverHeader>
-        <PopoverBody>
-          <Button onClick={action}>{body}</Button>
-        </PopoverBody>
+        <PopoverBody>{body}</PopoverBody>
       </PopoverContent>
     </Popover>
   );
