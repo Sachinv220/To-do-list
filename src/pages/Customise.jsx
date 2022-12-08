@@ -3,11 +3,12 @@ import { useMediaQuery } from "@chakra-ui/react";
 import PopoverBar from "../components/PopoverBar";
 import { useNavigate } from "react-router-dom";
 
-const Customise = ({ deleteEverything }) => {
+const Customise = ({ setTodo }) => {
   const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
   let navigate = useNavigate();
   const beforeDelete = () => {
-    deleteEverything();
+    setTodo([]);
+    localStorage.list = "";
     navigate("/to-do-list");
   };
 
