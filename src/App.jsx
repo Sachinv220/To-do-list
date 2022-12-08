@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Customise from "./pages/Customise";
 import { Route, Routes } from "react-router-dom";
@@ -7,6 +7,12 @@ import TodoPage from "./pages/TodoPage";
 
 function App() {
   const [todo, setTodo] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.getItem("chakra-ui-color-mode") === "light") {
+      localStorage.setItem("chakra-ui-color-mode", "dark");
+    }
+  }, [])
   return (
     <React.Fragment>
       <Sidebar />

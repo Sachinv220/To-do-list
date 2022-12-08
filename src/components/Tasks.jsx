@@ -6,11 +6,9 @@ const Tasks = ({ todo, onDelete, onCheck, onRename }) => {
   return (
     <Box>
       {Todo ? (
-        <Box display="inline">
-          <Text fontSize="3xl" fontWeight="bold">
-            Tasks
-          </Text>
-        </Box>
+        <Text fontSize="3xl" fontWeight="bold">
+          Tasks
+        </Text>
       ) : (
         ""
       )}

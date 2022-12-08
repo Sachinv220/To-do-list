@@ -11,7 +11,6 @@ import {
   PopoverBody,
   PopoverHeader,
   Button,
-  useColorModeValue,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -22,9 +21,6 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
   const [check, setChecked] = useState(task.checked);
   const [close, setClose] = useState(false);
   const [renameTask, setRenameTask] = useState(task.text);
-  const formBackGround = useColorModeValue("blue.300", "teal");
-  const PopoverColor = useColorModeValue("gray.50", "blue.800");
-  const textColor = useColorModeValue("black", "white");
   const [smallerThan540] = useMediaQuery("(max-width: 540px)");
 
   const Checked = () => {
@@ -34,12 +30,12 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
 
   return (
     <Container
-      backgroundColor={formBackGround}
+      backgroundColor="teal"
       borderWidth={20}
       maxWidth="25rem"
       width={smallerThan540 ? "20rem" : "25rem"}
       rounded={16}
-      borderColor={formBackGround}
+      borderColor="teal"
       mb={2}
       color="black"
     >
@@ -77,9 +73,9 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
           />
         </PopoverTrigger>
         <PopoverContent
-          color={textColor}
-          bg={PopoverColor}
-          borderColor={PopoverColor}
+          color="white"
+          bg="blue.800"
+          borderColor="blue.800"
         >
           <PopoverHeader pt={4} fontWeight="bold" border="0">
             Rename
