@@ -32,7 +32,7 @@ const Todo = ({ onSubmit }) => {
           onKeyPress={e => e.key === "Enter" && addTask()}
           variant="filled"
         />
-        <Circle cursor="pointer" onClick={addTask} size="27px" bg="tomato" mt={2} ml={1}>
+        <Circle cursor="pointer" onClick={addTask} size="27px" bg="blue.500" mt={2} ml={1}>
           <AiOutlineCheck />
         </Circle>
       </InputGroup>
