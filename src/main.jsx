@@ -7,7 +7,6 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ChakraProvider>
-    <ColorModeScript initialColorMode="dark" />
     <BrowserRouter>
       <App />
     </BrowserRouter>

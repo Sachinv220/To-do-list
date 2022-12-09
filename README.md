@@ -1,13 +1,5 @@
 # To-do list
-This is a To-do list [website](https://https://todo-wind.netlify.app/to-do-list) made using reactjs.
-
-
-## About
-  You can create, delete, rename tasks.
-  
-Features 
- * Double click the checkbox to delete the task 
- * others features are intuitive 
+This is a To-do list [website](https://sachinv220.github.io/to-do-list/) made using react javascript. This project was setup by &nbsp; `npx create-react-app`
 
 ## Packages used
 
@@ -17,4 +9,11 @@ Features
 * framer-motion
 * react-icons 
 * react-router-dom
-* vite
+
+## About
+This is To-do list it stores all the tasks in local storage, 
+so do not add any sensitive information as it can be stolen.
+
+### Features
+double click on the checkbox to delete a task 
+
