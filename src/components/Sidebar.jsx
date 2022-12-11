@@ -1,61 +1,63 @@
-import {
-  Stack,
-  Flex,
-  ListItem,
-  List,
-  Icon,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import { IoMdSettings } from "react-icons/io";
-import { FaClipboardList } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import BottomBar from "./BottomBar";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Flex, useMediaQuery, Text } from "@chakra-ui/react";
+import { FiSettings, FiList } from "react-icons/fi";
+const BottomBar = React.lazy(() => import("./BottomBar"));
 
 const Sidebar = () => {
   const [isSmallerThan850] = useMediaQuery("(max-width: 850px)");
+  let navigate = useNavigate();
 
   const Sidebar = (
-    <Stack position="fixed" height="100%" width="10rem">
-      <Flex alignItems="center" justifyContent="center">
-        <List mt="5rem">
-          <ListItem
-            borderWidth={3}
-            p={1}
-            width="6em"
-            fontWeight="bold"
-            rounded={15}
-            _hover={{
-              bgColor: "blue.800",
-              borderColor: "blue.800",
-            }}
-            fontSize="2xl"
-            mb={3}
-            borderColor="transparent"
-          >
-            <Icon as={IoMdSettings} verticalAlign="middle" mr={1} />
-            <Link to="/customise">Actions</Link>
-          </ListItem>
-          <ListItem
-            borderWidth={3}
-            width="6em"
-            fontWeight="bold"
-            rounded={15}
-            _hover={{
-              bgColor: "blue.800",
-              borderColor: "blue.800",
-            }}
-            fontSize="2xl"
-            mb={3}
-            borderColor="transparent"
-          >
-            <Icon as={FaClipboardList} verticalAlign="middle" mr={1} />
-            <Link to="/to-do-list">To-do</Link>
-          </ListItem>
-        </List>
-      </Flex>
-    </Stack>
+    <Flex
+      position="fixed"
+      height="100%"
+      flexDir="column"
+      gap={10}
+      width="10rem"
+      ml="2rem"
+      mt="4rem"
+    >
+      <Button
+        bg="none"
+        size="md"
+        width={130}
+        height={10}
+        fontSize="2xl"
+        fontWeight="bold"
+        leftIcon={<FiSettings />}
+        onClick={() => navigate("/customise")}
+      >
+        Actions
+      </Button>
+      <Button
+        bg="none"
+        size="md"
+        width={130}
+        height={10}
+        fontSize="2xl"
+        fontWeight="bold"
+        leftIcon={<FiList />}
+        onClick={() => navigate("/to-do-list")}
+      >
+        <Text textAlign="left" mr={6}>
+          Todo
+        </Text>
+      </Button>
+    </Flex>
   );
-  return <>{isSmallerThan850 ? <BottomBar /> : Sidebar}</>;
+  return (
+    <>
+      {isSmallerThan850 ? (
+        <React.Suspense
+          fallback={<div>loading...</div>}
+          children={<BottomBar />}
+        />
+      ) : (
+        Sidebar
+      )}
+    </>
+  );
 };
 
 export default Sidebar;
