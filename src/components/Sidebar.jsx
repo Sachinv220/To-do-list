@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, useMediaQuery, Text } from "@chakra-ui/react";
 import { FiSettings, FiList } from "react-icons/fi";
+const BottomBar = React.lazy(() => import("./BottomBar"));
 
 const Sidebar = () => {
+  const [isSmallerThan850] = useMediaQuery("(max-width: 850px)");
   let navigate = useNavigate();
 
-  return (
+  const Sidebar = (
     <Flex
       position="fixed"
       height="100%"
@@ -43,6 +45,18 @@ const Sidebar = () => {
         </Text>
       </Button>
     </Flex>
+  );
+  return (
+    <>
+      {isSmallerThan850 ? (
+        <React.Suspense
+          fallback={<div>loading...</div>}
+          children={<BottomBar />}
+        />
+      ) : (
+        Sidebar
+      )}
+    </>
   );
 };
 
