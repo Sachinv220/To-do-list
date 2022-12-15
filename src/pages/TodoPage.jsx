@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { verifyText, binarySearch, onSubmit } from "../Function";
+import { verifyText, binarySearch, onSubmit } from "../utils/Function";
 import { Flex } from "@chakra-ui/react";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
