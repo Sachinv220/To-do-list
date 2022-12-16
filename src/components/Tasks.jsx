@@ -2,18 +2,9 @@ import Task from "./Task";
 import { Box, Text } from "@chakra-ui/react";
 
 const Tasks = ({ todo, onDelete, onCheck, onRename }) => {
-  const Todo = todo.length > 0;
   return (
     <Box>
-      {Todo ? (
-        <Text fontSize="3xl" fontWeight="bold">
-          Tasks
-        </Text>
-      ) : (
-        ""
-      )}
-
-      {Todo ? (
+      {todo.length > 0 ? (
         todo.map(task => (
           <Task
             key={task.id}

@@ -41,7 +41,7 @@ const Sidebar = () => {
         onClick={() => navigate("/to-do-list")}
       >
         <Text textAlign="left" mr={6}>
-          Todo
+          Tasks
         </Text>
       </Button>
     </Flex>
