@@ -12,11 +12,9 @@ const PopoverBar = ({ button, header, body }) => {
   return (
     <Popover>
       <PopoverTrigger>{button}</PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
         <PopoverCloseButton />
-        <PopoverHeader>
-          {header}
-        </PopoverHeader>
+        <PopoverHeader>{header}</PopoverHeader>
         <PopoverBody>{body}</PopoverBody>
       </PopoverContent>
     </Popover>

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const BottomBar = () => {
   return (
-    <HStack top={0} bg="rgb(0, 0, 0, 0.1)">
+    <HStack top={0} position="fixed" bg="rgb(0, 0, 0, 0.1)">
       <Link to="/to-do-list">
-        <Button bg="transparent">To-do</Button>
+        <Button bg="transparent">Tasks</Button>
       </Link>
       <Link to="/customise">
         <Button bg="transparent">Customise</Button>
