@@ -1,4 +1,4 @@
-# Todo wind
+# Atomic Tasks
 A single website for all your affirmations.
 
 ## Packages used
