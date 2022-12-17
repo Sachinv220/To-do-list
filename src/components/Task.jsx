@@ -1,6 +1,6 @@
 import {
   Checkbox,
-  Container,
+  Flex,
   IconButton,
   Popover,
   PopoverTrigger,
@@ -29,7 +29,7 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
   };
 
   return (
-    <Container
+    <Flex
       backgroundColor="teal"
       borderWidth={20}
       maxWidth="25rem"
@@ -42,8 +42,10 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
       {check ? (
         <Checkbox
           maxWidth="18rem"
+          width="18rem"
           onChange={Checked}
           onDoubleClick={() => onDelete(task.id)}
+          wordBreak="break-word"
           defaultChecked
         >
           <s style={{ opacity: 0.5 }}>
@@ -53,22 +55,23 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
       ) : (
         <Checkbox
           maxWidth="18rem"
+          width="18rem"
           onChange={Checked}
-          textAlign="justify"
           onDoubleClick={() => onDelete(task.id)}
-          color="black"
+          wordBreak="break-word"
         >
-          {renameTask.trim() ? renameTask : task.text}
+          <>{renameTask.trim() ? renameTask : task.text}</>
         </Checkbox>
       )}
-
       <Popover placement="bottom" closeOnBlur={false} isOpen={close}>
         <PopoverTrigger>
           <IconButton
+            justifyContent="flex-end"
             size="sm"
             float="right"
             bgColor="rgb(0, 0, 0, 0.1)"
-            icon={<MdEdit />}
+            icon={<MdEdit style={{ marginRight: "6.4px" }} />}
+            ml={10}
             onClick={() => setClose(true)}
           />
         </PopoverTrigger>
@@ -96,7 +99,6 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
                 onRename(task.id, renameTask);
                 setClose(false);
               }}
-              textAlign="center"
               mt={1}
               colorScheme="green"
             >
@@ -106,7 +108,7 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
         </PopoverContent>
       </Popover>
       <br />
-    </Container>
+    </Flex>
   );
 };
 

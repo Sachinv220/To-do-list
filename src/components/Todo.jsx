@@ -20,7 +20,7 @@ const Todo = ({ onSubmit }) => {
   };
 
   return (
-    <Box mt={6} mb={2} rounded={16}>
+    <Box mt={10} mb={2} rounded={16}>
       <Heading display="flex" gap={2} fontSize="5xl">
         <SiAtom style={{ marginTop: "1px" }} />
         Tasks
