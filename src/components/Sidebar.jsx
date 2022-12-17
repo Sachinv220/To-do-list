@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Flex, useMediaQuery, Text } from "@chakra-ui/react";
 import { FiSettings, FiList } from "react-icons/fi";
-const BottomBar = React.lazy(() => import("./BottomBar"));
+const BottomBar = React.lazy(() => import("./NavBar"));
 
 const Sidebar = () => {
   const [isSmallerThan850] = useMediaQuery("(max-width: 850px)");
