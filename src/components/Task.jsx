@@ -1,6 +1,7 @@
 import {
   Checkbox,
   Flex,
+  Text,
   IconButton,
   Popover,
   PopoverTrigger,
@@ -50,9 +51,9 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
           wordBreak="break-word"
           defaultChecked
         >
-          <s style={{ opacity: 0.5 }}>
+          <Text fontSize={17} opacity={0.5} textDecor="line-through">
             {renameTask.trim() ? renameTask : task.text}
-          </s>
+          </Text>
         </Checkbox>
       ) : (
         <Checkbox
@@ -62,7 +63,9 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
           onDoubleClick={() => onDelete(task.id)}
           wordBreak="break-word"
         >
-          <>{renameTask.trim() ? renameTask : task.text}</>
+          <Text fontSize={17}>
+            {renameTask.trim() ? renameTask : task.text}
+          </Text>
         </Checkbox>
       )}
       <Popover placement="bottom" closeOnBlur={false} isOpen={close}>
