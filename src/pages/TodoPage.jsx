@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { verifyText, binarySearch, onSubmit } from "../utils/Function";
 import { Flex } from "@chakra-ui/react";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
 
-const TodoPage = ({ todo, setTodo }) => {
+const TodoPage = () => {
+  const [todo, setTodo] = useState([]);
+
   const deleteTask = id => {
     const list = todo.filter(task => task.id !== id);
     setTodo(list);
