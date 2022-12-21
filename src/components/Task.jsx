@@ -22,6 +22,7 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
   const [close, setClose] = useState(false);
   const [renameTask, setRenameTask] = useState(task.text);
   const [smallerThan540] = useMediaQuery("(max-width: 540px)");
+  const bgColor = "teal";
 
   const Checked = () => {
     setChecked(!check);
@@ -30,12 +31,13 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
 
   return (
     <Flex
-      backgroundColor="teal"
+      bg={bgColor}
+      _hover={{ bg: "teal.400", borderColor: "teal.400" }}
       borderWidth={20}
       maxWidth="25rem"
       width={smallerThan540 ? "20rem" : "25rem"}
       rounded={16}
-      borderColor="teal"
+      borderColor={bgColor}
       mb={2}
       color="black"
     >
