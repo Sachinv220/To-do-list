@@ -5,14 +5,24 @@ import {
   InputGroup,
   InputLeftElement,
   Box,
+  keyframes,
+  usePrefersReducedMotion,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaTasks } from "react-icons/fa";
+import { FaTasks, FaReact } from "react-icons/fa";
 import { AiOutlineCheck } from "react-icons/ai";
-import { SiAtom } from "react-icons/si";
 
 const Todo = ({ onSubmit }) => {
   const [task, setTask] = useState("");
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+  const animation = prefersReducedMotion
+    ? undefined
+    : `${spin} infinite 20s linear`;
 
   const addTask = () => {
     setTask("");
@@ -22,7 +32,9 @@ const Todo = ({ onSubmit }) => {
   return (
     <Box mt={10} mb={2} rounded={16}>
       <Heading display="flex" gap={2} fontSize="5xl">
-        <SiAtom style={{ marginTop: "1px" }} />
+        <Box animation={animation}>
+          <FaReact style={{ marginTop: "1px" }} />
+        </Box>
         Tasks
       </Heading>
       <InputGroup>
