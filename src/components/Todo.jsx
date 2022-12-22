@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaTasks, FaReact } from "react-icons/fa";
-import { AiOutlineCheck } from "react-icons/ai";
+import { VscCheck  } from "react-icons/vsc";
 
 const Todo = ({ onSubmit }) => {
   const [task, setTask] = useState("");
@@ -56,7 +56,7 @@ const Todo = ({ onSubmit }) => {
           mt={1.5}
           ml={1.5}
         >
-          <AiOutlineCheck />
+          <VscCheck />
         </Circle>
       </InputGroup>
     </Box>
