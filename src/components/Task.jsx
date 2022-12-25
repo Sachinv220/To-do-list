@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
   Input,
   PopoverContent,
-  PopoverArrow,
   PopoverCloseButton,
   PopoverBody,
   PopoverHeader,
@@ -23,6 +22,9 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
   const [close, setClose] = useState(false);
   const [renameTask, setRenameTask] = useState(task.text);
   const [smallerThan540] = useMediaQuery("(max-width: 540px)");
+  let checkBoxProps = {};
+  if (check) checkBoxProps.defaultChecked = "defaultChecked";
+
   const bgColor = "teal";
 
   const Checked = () => {
@@ -42,33 +44,23 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
       mb={2}
       color="black"
     >
-      {check ? (
-        <Checkbox
-          maxWidth="18rem"
-          width="18rem"
-          onChange={Checked}
-          onDoubleClick={() => onDelete(task.id)}
-          wordBreak="break-word"
-          defaultChecked
+      <Checkbox
+        maxWidth="18rem"
+        width="18rem"
+        onChange={Checked}
+        onDoubleClick={() => onDelete(task.id)}
+        wordBreak="break-word"
+        {...checkBoxProps}
+      >
+        <Text
+          fontSize={17}
+          opacity={check ? 0.5 : 1}
+          textDecor={check ? "line-through" : "none"}
         >
-          <Text fontSize={17} opacity={0.5} textDecor="line-through">
-            {renameTask.trim() ? renameTask : task.text}
-          </Text>
-        </Checkbox>
-      ) : (
-        <Checkbox
-          maxWidth="18rem"
-          width="18rem"
-          onChange={Checked}
-          onDoubleClick={() => onDelete(task.id)}
-          wordBreak="break-word"
-        >
-          <Text fontSize={17}>
-            {renameTask.trim() ? renameTask : task.text}
-          </Text>
-        </Checkbox>
-      )}
-      <Popover placement="bottom" closeOnBlur={false} isOpen={close}>
+          {renameTask.trim() ? renameTask : task.text}
+        </Text>
+      </Checkbox>
+      <Popover closeOnBlur={false} isOpen={close}>
         <PopoverTrigger>
           <IconButton
             justifyContent="flex-end"
@@ -84,7 +76,6 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
           <PopoverHeader pt={4} fontWeight="bold" border="0">
             Rename
           </PopoverHeader>
-          <PopoverArrow />
           <PopoverCloseButton onClick={() => setClose(false)} />
           <PopoverBody>
             <Input
@@ -112,7 +103,6 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
           </PopoverBody>
         </PopoverContent>
       </Popover>
-      <br />
     </Flex>
   );
 };
