@@ -8,13 +8,14 @@ import {
   keyframes,
   usePrefersReducedMotion,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaTasks, FaReact } from "react-icons/fa";
-import { VscCheck  } from "react-icons/vsc";
+import { VscCheck } from "react-icons/vsc";
 
 const Todo = ({ onSubmit }) => {
   const [task, setTask] = useState("");
   const prefersReducedMotion = usePrefersReducedMotion();
+  const inputRef = useRef();
 
   const spin = keyframes`
   from { transform: rotate(0deg); }
@@ -29,6 +30,10 @@ const Todo = ({ onSubmit }) => {
     onSubmit(task);
   };
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
     <Box mt={10} mb={2} rounded={16}>
       <Heading display="flex" gap={2} fontSize="5xl">
@@ -40,6 +45,7 @@ const Todo = ({ onSubmit }) => {
       <InputGroup>
         <InputLeftElement children={<FaTasks />} />
         <Input
+          ref={inputRef}
           rounded={10}
           width={300}
           placeholder="Add a task"
@@ -62,5 +68,4 @@ const Todo = ({ onSubmit }) => {
     </Box>
   );
 };
-
 export default Todo;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { verifyText, binarySearch, onSubmit } from "../utils/Function";
 import { Flex } from "@chakra-ui/react";
+import { DragDropContext } from "react-beautiful-dnd";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
 
@@ -50,16 +51,35 @@ const TodoPage = () => {
     localStorage.list = JSON.stringify(newTodo);
   };
 
+  const onDragEnd = result => {
+    const { destination, source } = result;
+
+    if (!destination) return;
+    if (destination.index === source.index) return;
+
+    let add;
+    let active = todo;
+
+    add = active[source.index];
+    active.splice(source.index, 1);
+
+    active.splice(destination.index, 0, add);
+
+    setTodo(active);
+    localStorage.list = JSON.stringify(active);
+  };
   return (
     <Flex zIndex={-1} alignItems="center" justifyContent="center" mb={20}>
       <Flex display="inline">
         <Todo onSubmit={handleSubmit} alert={Boolean(alert)} />
-        <Tasks
-          todo={todo}
-          onDelete={deleteTask}
-          onCheck={onCheck}
-          onRename={changeTask}
-        />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Tasks
+            todo={todo}
+            onDelete={deleteTask}
+            onCheck={onCheck}
+            onRename={changeTask}
+          />
+        </DragDropContext>
       </Flex>
     </Flex>
   );
