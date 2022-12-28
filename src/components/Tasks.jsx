@@ -1,26 +1,25 @@
 import Task from "./Task";
-import { Box } from "@chakra-ui/react";
-import { Droppable } from "react-beautiful-dnd";
+import { Box, Text } from "@chakra-ui/react";
 
 const Tasks = ({ todo, onDelete, onCheck, onRename }) => {
   return (
-    <Droppable droppableId="todos">
-      {provided => (
-        <Box ref={provided.innerRef} {...provided.droppableProps}>
-          {todo.map((task, index) => (
-            <Task
-              key={task.id}
-              onCheck={onCheck}
-              task={task}
-              onDelete={onDelete}
-              onRename={onRename}
-              index={index}
-            />
-          ))}
-          {provided.placeholder}
-        </Box>
+    <Box>
+      {todo.length > 0 ? (
+        todo.map(task => (
+          <Task
+            key={task.id}
+            onCheck={onCheck}
+            task={task}
+            onDelete={onDelete}
+            onRename={onRename}
+          />
+        ))
+      ) : (
+        <Text fontWeight="bold" textAlign="center" fontSize="3xl">
+          No Tasks to show
+        </Text>
       )}
-    </Droppable>
+    </Box>
   );
 };
 
