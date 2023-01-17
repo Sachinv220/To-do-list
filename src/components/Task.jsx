@@ -19,14 +19,14 @@ import { MdEdit } from "react-icons/md";
 import React from "react";
 
 const Task = ({ task, onDelete, onCheck, onRename }) => {
-  const [check, setChecked] = useState(task.checked);
-  const [close, setClose] = useState(false);
+  let check = task.checked;
+  let [close, setClose] = useState(false);
   const [renameTask, setRenameTask] = useState(task.text);
   const [smallerThan540] = useMediaQuery("(max-width: 540px)");
   const bgColor = "teal";
 
   const Checked = () => {
-    setChecked(!check);
+    check = !check;
     onCheck(task.id);
   };
 
