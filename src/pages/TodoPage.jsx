@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { verifyText, binarySearch, onSubmit } from "../utils/Function";
-import { Flex } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
 
@@ -51,8 +51,7 @@ const TodoPage = () => {
   };
 
   return (
-    <Flex zIndex={-1} alignItems="center" justifyContent="center" mb={20}>
-      <Flex display="inline">
+    <Center display="flex" flexDirection="column">
         <Todo onSubmit={handleSubmit} alert={Boolean(alert)} />
         <Tasks
           todo={todo}
@@ -60,8 +59,7 @@ const TodoPage = () => {
           onCheck={onCheck}
           onRename={changeTask}
         />
-      </Flex>
-    </Flex>
+    </Center>
   );
 };
 
