@@ -1,4 +1,6 @@
-const verifyText = text => {
+import { TaskArray } from "./types";
+
+const verifyText = (text: string) => {
   text = text.trim();
   if (text) {
     return true;
@@ -6,7 +8,7 @@ const verifyText = text => {
   return false;
 };
 
-const onSubmit = (todo, text) => {
+const onSubmit = (todo : TaskArray, text : string) => {
   let id = 0;
 
   if (todo.length > 0) {
@@ -22,7 +24,7 @@ const onSubmit = (todo, text) => {
   return todoList;
 };
 
-const binarySearch = (todo, id) => {
+const binarySearch = (todo : TaskArray, id : number) => {
   let start = 0;
   let end = todo.length - 1;
 
@@ -33,7 +35,11 @@ const binarySearch = (todo, id) => {
     else if (todo[mid].id < id) start = mid + 1;
     else end = mid - 1;
   }
-  return false;
+  return -1;
 };
 
-export { verifyText, onSubmit, binarySearch };
+const sortTasks = (a, b) => {
+  return a.checked - b.checked;
+}
+
+export { verifyText, onSubmit, binarySearch, sortTasks };

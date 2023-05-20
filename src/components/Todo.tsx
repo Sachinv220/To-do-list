@@ -8,11 +8,15 @@ import {
   keyframes,
   usePrefersReducedMotion,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaTasks, FaReact } from "react-icons/fa";
 import { VscCheck  } from "react-icons/vsc";
 
-const Todo = ({ onSubmit }) => {
+interface Props {
+  onSubmit : (text : string) => void;
+}
+
+const Todo : React.FC<Props> = ({ onSubmit }) => {
   const [task, setTask] = useState("");
   const prefersReducedMotion = usePrefersReducedMotion();
 

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { verifyText, binarySearch, onSubmit } from "../utils/Function";
+import { verifyText, binarySearch, onSubmit } from "../utils/util";
 import { Center } from "@chakra-ui/react";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
+import { TaskArray } from "../utils/types";
 
 const TodoPage = () => {
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState<TaskArray>([]);
 
-  const deleteTask = id => {
+  const deleteTask = (id : number) => {
     const list = todo.filter(task => task.id !== id);
     setTodo(list);
     if (list.length !== 0) {
@@ -17,7 +18,7 @@ const TodoPage = () => {
     }
   };
 
-  const handleSubmit = text => {
+  const handleSubmit = (text : string) => {
     if (!verifyText(text)) {
       return;
     }
@@ -33,14 +34,14 @@ const TodoPage = () => {
     }
   }, []);
 
-  const onCheck = id => {
+  const onCheck = (id : number) => {
     let newTodo = todo;
     const ind = binarySearch(newTodo, id);
     newTodo[ind].checked = !newTodo[ind].checked;
     localStorage.list = JSON.stringify(newTodo);
   };
 
-  const changeTask = (id, text) => {
+  const changeTask = (id : number, text : string) => {
     if (!text) return;
 
     let newTodo = todo;
@@ -52,7 +53,7 @@ const TodoPage = () => {
 
   return (
     <Center display="flex" flexDirection="column">
-        <Todo onSubmit={handleSubmit} alert={Boolean(alert)} />
+        <Todo onSubmit={handleSubmit} />
         <Tasks
           todo={todo}
           onDelete={deleteTask}
