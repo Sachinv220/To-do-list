@@ -1,7 +1,7 @@
-interface Task {
+export interface TTask {
     checked : boolean,
     text : string, 
     id : number
 }
 
-export type TaskArray = Array<Task>;
+export type TaskArray = Array<TTask>;

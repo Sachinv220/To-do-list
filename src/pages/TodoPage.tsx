@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { verifyText, binarySearch, onSubmit } from "../utils/util";
 import { Center } from "@chakra-ui/react";
 import Todo from "../components/Todo";

@@ -38,8 +38,4 @@ const binarySearch = (todo : TaskArray, id : number) => {
   return -1;
 };
 
-const sortTasks = (a, b) => {
-  return a.checked - b.checked;
-}
-
-export { verifyText, onSubmit, binarySearch, sortTasks };
+export { verifyText, onSubmit, binarySearch };

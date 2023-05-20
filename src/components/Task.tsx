@@ -17,8 +17,16 @@ import {
 import { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import React from "react";
+import { TTask } from "../utils/types";
 
-const Task = ({ task, onDelete, onCheck, onRename }) => {
+interface Props {
+  task : TTask, 
+  onDelete : (id : number) => void, 
+  onCheck: (id : number) => void, 
+  onRename : (id : number, rename : string) => void, 
+}
+
+const Task : React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
   let check = task.checked;
   let [close, setClose] = useState(false);
   const [renameTask, setRenameTask] = useState(task.text);
@@ -71,6 +79,7 @@ const Task = ({ task, onDelete, onCheck, onRename }) => {
       <Popover placement="bottom" closeOnBlur={false} isOpen={close}>
         <PopoverTrigger>
           <IconButton
+            aria-label=""
             justifyContent="flex-end"
             size="sm"
             float="right"

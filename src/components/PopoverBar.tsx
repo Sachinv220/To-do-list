@@ -8,7 +8,13 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 
-const PopoverBar = ({ button, header, body }) => {
+interface Props {
+  button : JSX.Element,
+  header : any, 
+  body : any,  
+}
+
+const PopoverBar: React.FC<Props> = ({ button, header, body }) => {
   return (
     <Popover>
       <PopoverTrigger>{button}</PopoverTrigger>
