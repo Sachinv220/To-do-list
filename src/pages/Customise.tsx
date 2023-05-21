@@ -1,3 +1,5 @@
+/** @format */
+
 import { Container, Text, Button } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import PopoverBar from "../components/PopoverBar";

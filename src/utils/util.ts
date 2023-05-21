@@ -1,3 +1,5 @@
+/** @format */
+
 import { TaskArray } from "./types";
 
 const verifyText = (text: string) => {
@@ -8,7 +10,7 @@ const verifyText = (text: string) => {
   return false;
 };
 
-const onSubmit = (todo : TaskArray, text : string) => {
+const onSubmit = (todo: TaskArray, text: string) => {
   let id = 0;
 
   if (todo.length > 0) {
@@ -24,7 +26,7 @@ const onSubmit = (todo : TaskArray, text : string) => {
   return todoList;
 };
 
-const binarySearch = (todo : TaskArray, id : number) => {
+const binarySearch = (todo: TaskArray, id: number) => {
   let start = 0;
   let end = todo.length - 1;
 

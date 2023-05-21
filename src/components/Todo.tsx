@@ -1,3 +1,5 @@
+/** @format */
+
 import {
   Input,
   Heading,
@@ -10,13 +12,13 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { FaTasks, FaReact } from "react-icons/fa";
-import { VscCheck  } from "react-icons/vsc";
+import { VscCheck } from "react-icons/vsc";
 
 interface Props {
-  onSubmit : (text : string) => void;
+  onSubmit: (text: string) => void;
 }
 
-const Todo : React.FC<Props> = ({ onSubmit }) => {
+const Todo: React.FC<Props> = ({ onSubmit }) => {
   const [task, setTask] = useState("");
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -48,8 +50,8 @@ const Todo : React.FC<Props> = ({ onSubmit }) => {
           width={300}
           placeholder="Add a task"
           value={task}
-          onChange={e => setTask(e.target.value)}
-          onKeyPress={e => e.key === "Enter" && addTask()}
+          onChange={(e) => setTask(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && addTask()}
           variant="filled"
         />
         <Circle

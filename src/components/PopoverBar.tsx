@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import {
   Popover,
@@ -9,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 
 interface Props {
-  button : JSX.Element,
-  header : any, 
-  body : any,  
+  button: JSX.Element;
+  header: any;
+  body: any;
 }
 
 const PopoverBar: React.FC<Props> = ({ button, header, body }) => {

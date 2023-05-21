@@ -1,3 +1,6 @@
+/** @format */
+
+import React, { useState } from "react";
 import {
   Checkbox,
   Flex,
@@ -13,28 +16,27 @@ import {
   PopoverHeader,
   Button,
   useMediaQuery,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { MdEdit } from "react-icons/md";
-import React from "react";
 import { TTask } from "../utils/types";
 
 interface Props {
-  task : TTask, 
-  onDelete : (id : number) => void, 
-  onCheck: (id : number) => void, 
-  onRename : (id : number, rename : string) => void, 
+  task: TTask;
+  onDelete: (id: number) => void;
+  onCheck: (id: number) => void;
+  onRename: (id: number, rename: string) => void;
 }
 
-const Task : React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
-  let check = task.checked;
-  let [close, setClose] = useState(false);
+const Task: React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
+  const [checked, setChecked] = useState(task.checked);
   const [renameTask, setRenameTask] = useState(task.text);
   const [smallerThan540] = useMediaQuery("(max-width: 540px)");
+  const { isOpen, onClose, onOpen } = useDisclosure();
   const bgColor = "teal";
 
-  const Checked = () => {
-    check = !check;
+  const handleCheck = () => {
+    setChecked(!checked);
     onCheck(task.id);
   };
 
@@ -50,68 +52,49 @@ const Task : React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
       mb={2}
       color="black"
     >
-      {check ? (
-        <Checkbox
-          maxWidth="18rem"
-          width="18rem"
-          onChange={Checked}
-          onDoubleClick={() => onDelete(task.id)}
-          wordBreak="break-word"
-          defaultChecked
+      <Checkbox
+        maxWidth="18rem"
+        width="18rem"
+        onChange={handleCheck}
+        onDoubleClick={() => onDelete(task.id)}
+        wordBreak="break-word"
+        defaultChecked={checked}
+      >
+        <Text
+          fontSize={17}
+          opacity={checked ? 0.5 : 1}
+          textDecor={checked ? "line-through" : "none"}
         >
-          <Text fontSize={17} opacity={0.5} textDecor="line-through">
-            {renameTask.trim() ? renameTask : task.text}
-          </Text>
-        </Checkbox>
-      ) : (
-        <Checkbox
-          maxWidth="18rem"
-          width="18rem"
-          onChange={Checked}
-          onDoubleClick={() => onDelete(task.id)}
-          wordBreak="break-word"
-        >
-          <Text fontSize={17}>
-            {renameTask.trim() ? renameTask : task.text}
-          </Text>
-        </Checkbox>
-      )}
-      <Popover placement="bottom" closeOnBlur={false} isOpen={close}>
+          {renameTask.trim() ? renameTask : task.text}
+        </Text>
+      </Checkbox>
+      <Popover
+        placement="bottom"
+        closeOnBlur={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpen={onOpen}
+      >
         <PopoverTrigger>
-          <IconButton
-            aria-label=""
-            justifyContent="flex-end"
-            size="sm"
-            float="right"
-            bgColor="rgb(0, 0, 0, 0.1)"
-            icon={<MdEdit style={{ marginRight: "6.4px" }} />}
-            ml={10}
-            onClick={() => setClose(true)}
-          />
+          <IconButton ml={5} aria-label="" icon={<MdEdit />} size="sm" />
         </PopoverTrigger>
         <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
           <PopoverHeader pt={4} fontWeight="bold" border="0">
             Rename
           </PopoverHeader>
           <PopoverArrow />
-          <PopoverCloseButton onClick={() => setClose(false)} />
+          <PopoverCloseButton />
           <PopoverBody>
             <Input
-              onChange={e => setRenameTask(e.target.value)}
+              onChange={(e) => setRenameTask(e.target.value)}
               defaultValue={task.text}
               variant="filled"
-              placeholder="rename Task"
-              onKeyDown={e => {
-                if (e.key === "Enter") {
-                  setClose(false);
-                  onRename(task.id, renameTask.trim());
-                }
-              }}
+              placeholder="Rename Task"
             />
             <Button
               onClick={() => {
-                onRename(task.id, renameTask);
-                setClose(false);
+                onRename(task.id, renameTask)
+                onClose();
               }}
               mt={1}
               colorScheme="green"
@@ -121,7 +104,6 @@ const Task : React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
           </PopoverBody>
         </PopoverContent>
       </Popover>
-      <br />
     </Flex>
   );
 };

@@ -1,8 +1,18 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Flex, useMediaQuery, Text } from "@chakra-ui/react";
 import { FiSettings, FiList } from "react-icons/fi";
 import NavBar from "./NavBar";
+
+const buttonProps = () => {
+  return {
+    bg: "none",
+    size: "md",
+    width: 130,
+    height: 10,
+    fontSize: "2xl",
+    fontWeight: "bold",
+  };
+};
 
 const Sidebar = () => {
   const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
@@ -19,24 +29,14 @@ const Sidebar = () => {
       mt="4rem"
     >
       <Button
-        bg="none"
-        size="md"
-        width={130}
-        height={10}
-        fontSize="2xl"
-        fontWeight="bold"
+        {...buttonProps()}
         leftIcon={<FiSettings />}
         onClick={() => navigate("/customise")}
       >
         Actions
       </Button>
       <Button
-        bg="none"
-        size="md"
-        width={130}
-        height={10}
-        fontSize="2xl"
-        fontWeight="bold"
+        {...buttonProps()}
         leftIcon={<FiList />}
         onClick={() => navigate("/to-do-list")}
       >
