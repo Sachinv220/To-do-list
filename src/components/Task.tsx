@@ -1,6 +1,4 @@
-/** @format */
-
-import React, { useState } from "react";
+import React, { useState, memo} from "react";
 import {
   Checkbox,
   Flex,
@@ -34,6 +32,8 @@ const Task: React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
   const [smallerThan540] = useMediaQuery("(max-width: 540px)");
   const { isOpen, onClose, onOpen } = useDisclosure();
   const bgColor = "teal";
+
+  console.log("Re-Rendered", task.text);
 
   const handleCheck = () => {
     setChecked(!checked);
@@ -108,4 +108,4 @@ const Task: React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
   );
 };
 
-export default Task;
+export default memo(Task);

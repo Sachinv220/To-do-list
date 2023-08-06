@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { memo } from "react";
 import Task from "./Task";
 import { Box, Text } from "@chakra-ui/react";
 import { TaskArray } from "../utils/types";
@@ -34,4 +34,4 @@ const Tasks: React.FC<Props> = ({ todo, onDelete, onCheck, onRename }) => {
   );
 };
 
-export default Tasks;
+export default memo(Tasks);
