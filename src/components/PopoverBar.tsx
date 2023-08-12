@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React, { ReactNode } from "react";
 import {
   Popover,
   PopoverCloseButton,
@@ -10,8 +12,8 @@ import {
 
 interface Props {
   button: JSX.Element;
-  header: any;
-  body: any;
+  header: ReactNode;
+  body: ReactNode;
 }
 
 const PopoverBar: React.FC<Props> = ({ button, header, body }) => {
