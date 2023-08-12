@@ -5,5 +5,3 @@ export interface TTask {
   text: string;
   id: number;
 }
-
-export type TaskArray = Array<TTask>;

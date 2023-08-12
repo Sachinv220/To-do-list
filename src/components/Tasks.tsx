@@ -1,12 +1,10 @@
-/** @format */
-
 import React, { memo } from "react";
 import Task from "./Task";
 import { Box, Text } from "@chakra-ui/react";
-import { TaskArray } from "../utils/types";
+import { TTask } from "../utils/types";
 
 interface Props {
-  todo: TaskArray;
+  todo: TTask[];
   onDelete: (id: number) => void;
   onCheck: (id: number) => void;
   onRename: (id: number, text: string) => void;

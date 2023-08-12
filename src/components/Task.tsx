@@ -33,8 +33,6 @@ const Task: React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const bgColor = "teal";
 
-  console.log("Re-Rendered", task.text);
-
   const handleCheck = () => {
     setChecked(!checked);
     onCheck(task.id);

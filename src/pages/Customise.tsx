@@ -9,7 +9,7 @@ const Customise = () => {
   const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
   let navigate = useNavigate();
   const beforeDelete = () => {
-    localStorage.list = "";
+    localStorage.setItem("list", "");
     navigate("/to-do-list");
   };
 

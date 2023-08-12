@@ -1,19 +1,29 @@
+/** @format */
+
 import React, { useCallback, useState } from "react";
 import { verifyText, binarySearch, onSubmit } from "../utils/util";
 import { Center } from "@chakra-ui/react";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
-import { TaskArray, TTask } from "../utils/types";
+import { TTask } from "../utils/types";
 
 const TodoPage: React.FC = () => {
-  const [todo, setTodo] = useState<TaskArray>(() => {
+  const [todo, setTodo] = useState<TTask[]>(() => {
     const storedList = localStorage.getItem("list");
-    return storedList ? JSON.parse(storedList) : [];
+    try {
+      return storedList ? JSON.parse(storedList) : [];
+    } catch (e) {
+      console.error(e);
+      localStorage.setItem("list", "");
+      return [];
+    }
   });
 
   const deleteTask = useCallback((id: number) => {
-    setTodo((prevTodo: TaskArray) => {
-      const newList: TaskArray = prevTodo.filter((task: TTask) => task.id !== id);
+    setTodo((prevTodo: TTask[]) => {
+      const newList: TTask[] = prevTodo.filter(
+        (task: TTask) => task.id !== id
+      );
       localStorage.setItem("list", JSON.stringify(newList));
       return newList;
     });
@@ -24,16 +34,16 @@ const TodoPage: React.FC = () => {
       return;
     }
 
-    setTodo((prevTodo: TaskArray) => {
-      const newList: TaskArray = onSubmit(prevTodo, text);
+    setTodo((prevTodo: TTask[]) => {
+      const newList: TTask[] = onSubmit(prevTodo, text);
       localStorage.setItem("list", JSON.stringify(newList));
       return newList;
     });
   }, []);
 
   const onCheck = useCallback((id: number) => {
-    setTodo((prevTodo: TaskArray) => {
-      const newList: TaskArray = [...prevTodo];
+    setTodo((prevTodo: TTask[]) => {
+      const newList: TTask[] = [...prevTodo];
       const ind: number = binarySearch(newList, id);
       newList[ind].checked = !newList[ind].checked;
       localStorage.setItem("list", JSON.stringify(newList));
@@ -44,8 +54,8 @@ const TodoPage: React.FC = () => {
   const changeTask = useCallback((id: number, text: string) => {
     if (!text) return;
 
-    setTodo((prevTodo: TaskArray) => {
-      const newList: TaskArray = [...prevTodo];
+    setTodo((prevTodo: TTask[]) => {
+      const newList: TTask[] = [...prevTodo];
       const ind: number = binarySearch(newList, id);
       newList[ind].text = text;
       localStorage.setItem("list", JSON.stringify(newList));
@@ -54,15 +64,15 @@ const TodoPage: React.FC = () => {
   }, []);
 
   return (
-      <Center display="flex" flexDirection="column">
-        <Todo onSubmit={handleSubmit} />
-        <Tasks
-            todo={todo}
-            onDelete={deleteTask}
-            onCheck={onCheck}
-            onRename={changeTask}
-        />
-      </Center>
+    <Center display="flex" flexDirection="column">
+      <Todo onSubmit={handleSubmit} />
+      <Tasks
+        todo={todo}
+        onDelete={deleteTask}
+        onCheck={onCheck}
+        onRename={changeTask}
+      />
+    </Center>
   );
 };
 
