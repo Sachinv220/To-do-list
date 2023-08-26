@@ -74,7 +74,7 @@ const Task: React.FC<Props> = ({ task, onDelete, onCheck, onRename }) => {
         onOpen={onOpen}
       >
         <PopoverTrigger>
-          <IconButton ml={5} aria-label="" icon={<MdEdit />} size="sm" />
+          <IconButton color="black" ml={5} aria-label="" icon={<MdEdit />} size="sm" />
         </PopoverTrigger>
         <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
           <PopoverHeader pt={4} fontWeight="bold" border="0">
