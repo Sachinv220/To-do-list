@@ -26,6 +26,13 @@ const onSubmit = (todo: TTask[], text: string) => {
   return todoList;
 };
 
+const sortTasks = (a: TTask, b: TTask): number => {
+  if (!a.checked) return 1;
+  if (b.checked) return 0;
+
+  return -1;
+};
+
 const binarySearch = (todo: TTask[], id: number) => {
   let start = 0;
   let end = todo.length - 1;
@@ -40,4 +47,4 @@ const binarySearch = (todo: TTask[], id: number) => {
   return -1;
 };
 
-export { verifyText, onSubmit, binarySearch };
+export { verifyText, onSubmit, binarySearch, sortTasks };

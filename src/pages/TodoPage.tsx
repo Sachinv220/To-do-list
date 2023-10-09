@@ -1,13 +1,13 @@
 /** @format */
 
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { verifyText, binarySearch, onSubmit } from "../utils/util";
 import { Center } from "@chakra-ui/react";
 import Todo from "../components/Todo";
 import Tasks from "../components/Tasks";
 import { TTask } from "../utils/types";
 
-const TodoPage: React.FC = () => {
+const TodoPage = () => {
   const [todo, setTodo] = useState<TTask[]>(() => {
     const storedList = localStorage.getItem("list");
     try {
@@ -21,9 +21,7 @@ const TodoPage: React.FC = () => {
 
   const deleteTask = useCallback((id: number) => {
     setTodo((prevTodo: TTask[]) => {
-      const newList: TTask[] = prevTodo.filter(
-        (task: TTask) => task.id !== id
-      );
+      const newList: TTask[] = prevTodo.filter((task: TTask) => task.id !== id);
       localStorage.setItem("list", JSON.stringify(newList));
       return newList;
     });
